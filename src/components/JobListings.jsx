@@ -1,7 +1,7 @@
 import jobs from '../jobs.json';
 import JobListing from './JobListing';
 import { useState, useEffect } from 'react'
-import Spinners from './Spinners';
+import Spinners from './spinners';
 
 
 const JobListings = ({ isHome = false }) => {
