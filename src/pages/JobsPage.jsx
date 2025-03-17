@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { useLoaderData,useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify';
