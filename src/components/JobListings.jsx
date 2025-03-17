@@ -1,7 +1,7 @@
-import jobs from '../jobs.json';
 import JobListing from './JobListing';
 import { useState, useEffect } from 'react'
 import Spinners from './spinners';
+import PropTypes from 'prop-types';
 
 
 const JobListings = ({ isHome = false }) => {
@@ -52,6 +52,10 @@ const JobListings = ({ isHome = false }) => {
             </div>
         </section>
     );
+};
+
+JobListings.propTypes = {
+  isHome: PropTypes.bool
 };
 
 export default JobListings
