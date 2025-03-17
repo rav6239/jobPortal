@@ -2,7 +2,8 @@
   "version": 2,
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/api/.*", "dest": "/api/jobs.js" },
+    { "src": "/api/jobs", "dest": "/api/jobs.js" },
+    { "src": "/api/jobs/(.*)", "dest": "/api/jobs/[id].js" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 } 

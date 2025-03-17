@@ -5,7 +5,13 @@ export default function handler(req, res) {
 
   switch (method) {
     case 'GET':
-      res.status(200).json(jobs);
+      const { _limit } = req.query;
+      if (_limit) {
+        const limitedJobs = jobs.slice(0, parseInt(_limit));
+        res.status(200).json(limitedJobs);
+      } else {
+        res.status(200).json(jobs);
+      }
       break;
     case 'POST':
       const newJob = req.body;

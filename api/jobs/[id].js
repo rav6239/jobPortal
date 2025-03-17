@@ -1,4 +1,4 @@
-import jobs from '../../src/jobs.json';
+import jobs from '../../../src/jobs.json';
 
 export default function handler(req, res) {
   const { method } = req;
@@ -15,12 +15,23 @@ export default function handler(req, res) {
       res.status(200).json(job);
       break;
     case 'PUT':
-      // Handle update logic here
-      res.status(200).json(job);
+      const updatedJob = req.body;
+      const index = jobs.findIndex(j => j.id === parseInt(id));
+      if (index !== -1) {
+        jobs[index] = updatedJob;
+        res.status(200).json(updatedJob);
+      } else {
+        res.status(404).json({ message: 'Job not found' });
+      }
       break;
     case 'DELETE':
-      // Handle delete logic here
-      res.status(200).json({ message: 'Job deleted' });
+      const jobIndex = jobs.findIndex(j => j.id === parseInt(id));
+      if (jobIndex !== -1) {
+        jobs.splice(jobIndex, 1);
+        res.status(200).json({ message: 'Job deleted' });
+      } else {
+        res.status(404).json({ message: 'Job not found' });
+      }
       break;
     default:
       res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
