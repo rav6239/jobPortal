@@ -1,4 +1,4 @@
-import jobsData from '../../src/jobs.json';
+import { jobsData } from './data';
 
 export default function handler(req, res) {
   try {
