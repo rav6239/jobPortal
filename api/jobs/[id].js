@@ -19,29 +19,21 @@ export default function handler(req, res) {
       case 'GET': {
         return res.status(200).json(job);
       }
-      case 'PUT': {
-        const updatedJob = req.body;
-        const index = jobsData.jobs.findIndex(j => j.id === id);
-        if (index !== -1) {
-          jobsData.jobs[index] = updatedJob;
-          return res.status(200).json(updatedJob);
-        }
-        return res.status(404).json({ message: 'Job not found' });
-      }
+      case 'PUT':
       case 'DELETE': {
-        const jobIndex = jobsData.jobs.findIndex(j => j.id === id);
-        if (jobIndex !== -1) {
-          jobsData.jobs.splice(jobIndex, 1);
-          return res.status(200).json({ message: 'Job deleted' });
-        }
-        return res.status(404).json({ message: 'Job not found' });
+        return res.status(405).json({ 
+          message: 'This is a read-only API. Modifications are not supported in this version.' 
+        });
       }
       default:
-        res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
+        res.setHeader('Allow', ['GET']);
         return res.status(405).end(`Method ${method} Not Allowed`);
     }
   } catch (error) {
     console.error('API Error:', error);
-    return res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    return res.status(500).json({ 
+      message: 'Internal Server Error', 
+      error: error.message 
+    });
   }
 } 
