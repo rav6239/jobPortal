@@ -5,6 +5,10 @@ export default function handler(req, res) {
     const { method } = req;
     const { id } = req.query;
 
+    if (!id) {
+      return res.status(400).json({ message: 'Job ID is required' });
+    }
+
     const job = jobsData.jobs.find(job => job.id === id);
 
     if (!job) {

@@ -3,17 +3,18 @@ import jobsData from '../../src/jobs.json';
 export default function handler(req, res) {
   try {
     const { method } = req;
-    let response;
 
     switch (method) {
       case 'GET': {
         const { _limit } = req.query;
+        const jobs = jobsData.jobs || [];
+        
         if (_limit) {
-          response = jobsData.jobs.slice(0, parseInt(_limit));
-        } else {
-          response = jobsData.jobs;
+          const limit = parseInt(_limit);
+          return res.status(200).json(jobs.slice(0, limit));
         }
-        return res.status(200).json(response);
+        
+        return res.status(200).json(jobs);
       }
       case 'POST': {
         const newJob = req.body;
