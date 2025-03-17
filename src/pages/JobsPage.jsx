@@ -114,10 +114,10 @@ const onDeleteClick = (jobId)=>{
   ;
   
 }
-const jobLoader = async({params})=>{
+const jobLoader = async({params}) => {
     const res = await fetch(`/api/jobs/${params.id}`);
     const data = await res.json();
     return data;
-  }
+}
 
 export  {JobsPage as default, jobLoader};
