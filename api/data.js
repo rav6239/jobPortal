@@ -1,4 +1,4 @@
-export const jobsData = {
+const jobsData = {
   jobs: [
     {
       "id": "1",
@@ -43,4 +43,6 @@ export const jobsData = {
       }
     }
   ]
-}; 
+};
+
+module.exports = jobsData; 

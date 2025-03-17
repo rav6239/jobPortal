@@ -1,6 +1,6 @@
-import { jobsData } from '../data';
+const jobsData = require('../data');
 
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   try {
     const { method } = req;
     const { id } = req.query;
