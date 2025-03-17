@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
-import { useParams,useLoaderData,useNavigate } from 'react-router-dom';
+import { useLoaderData,useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const JobsPage = ({deleteJob}) => {
     const navigate = useNavigate();
-    const {id} = useParams();
     const job = useLoaderData();
     
 const onDeleteClick = (jobId)=>{
@@ -114,6 +114,11 @@ const onDeleteClick = (jobId)=>{
   ;
   
 }
+
+JobsPage.propTypes = {
+    deleteJob: PropTypes.func.isRequired
+};
+
 const jobLoader = async({params}) => {
     const res = await fetch(`/api/jobs/${params.id}`);
     const data = await res.json();
